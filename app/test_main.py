@@ -1,7 +1,5 @@
 import pytest
 
-from typing import Union
-
 from app.main import check_password
 
 
