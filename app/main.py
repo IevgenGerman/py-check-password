@@ -20,3 +20,9 @@ def check_password(password: str) -> bool:
         else:
             return False
     return all([has_upper, has_digit, has_special])
+
+
+try:
+    print(check_password(None))
+except Exception as e:
+    print(e)

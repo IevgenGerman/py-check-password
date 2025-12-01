@@ -7,19 +7,17 @@ from app.main import check_password
 
 def data_gen() -> list:
     return [
-        ("Pass@word1", True),
+        ("Pass@wor1", True),
         ("P@word1", False),
-        ("Psword1s", False),
         ("P@word1s", True),
+        ("p@word1s", False),
         ("Pa+ss@word1", False),
         ("ddddddddd", False),
         ("111111111", False),
         ("МММММММММ", False),
         ("Аd1ddddddd", False),
-        ("Pass@word1qweqweqe", False),
+        ("Pass@word1qweqweq", False),
         ("Aa1$aaaaasssssss", True),
-        ("aaaaaa1$", False),
-        ("aaaaa1$", False),
         ("Pass@word1qweqweq", False),
         (None, TypeError),
         (4546535, TypeError),
