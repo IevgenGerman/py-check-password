@@ -27,7 +27,7 @@ data_for_test = data_gen()
 
 def gen_keys(data_set: list) -> str:
     password, expected = data_set
-    return (fr"if password = {password}, "
+    return (fr"if password = {repr(password)}, "
             f"result {expected}")
 
 
