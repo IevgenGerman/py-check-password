@@ -14,10 +14,13 @@ def data_gen() -> list:
         ("111111111", False),
         ("МММММММММ", False),
         ("Аd1ddddddd", False),
-        ("Pass@word1qweqweqweqwqweqwe", False),
+        ("Pass@word1qweqweqe", False),
         ("Aa1$aaaaasssssss", True),
         ("aaaaaa1$", False),
         ("aaaaa1$", False),
+        ("Pass@word1qweqweq", False),
+        (None, TypeError),
+        (4546535, TypeError),
 
     ]
 
@@ -36,4 +39,8 @@ def gen_keys(data_set: list) -> str:
                          ids=gen_keys)
 def test_check_password(dataset: Tuple[str, bool]) -> None:
     password, expected = dataset
-    assert check_password(password) == expected
+    if expected == TypeError:
+        with pytest.raises(TypeError):
+            check_password(password)
+    else:
+        assert check_password(password) == expected
