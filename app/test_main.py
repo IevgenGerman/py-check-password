@@ -1,6 +1,6 @@
 import pytest
 
-from unittest import mock
+from typing import Tuple
 
 from app.main import check_password
 
@@ -14,21 +14,26 @@ def data_gen() -> list:
         ("111111111", False),
         ("МММММММММ", False),
         ("Аd1ddddddd", False),
+        ("Pass@word1qweqweqweqwqweqwe", False),
+        ("Aa1$aaaaasssssss", True),
+        ("aaaaaa1$", False),
+        ("aaaaa1$", False),
+
     ]
 
 
-data_set = data_gen()
+data_for_test = data_gen()
 
 
 def gen_keys(data_set: list) -> str:
     password, expected = data_set
-    return (f"if password = {password}, "
+    return (fr"if password = {password}, "
             f"result {expected}")
 
 
 @pytest.mark.parametrize("dataset",
-                         data_set,
+                         data_for_test,
                          ids=gen_keys)
-def test_check_password(dataset: mock.MagicMock) -> None:
+def test_check_password(dataset: Tuple[str, bool]) -> None:
     password, expected = dataset
     assert check_password(password) == expected
